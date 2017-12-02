@@ -2,6 +2,9 @@ package com.morsu.utils;
 
 import java.util.Scanner;
 
+/*
+    Simple methods for algorithm usage
+ */
 public abstract class AlgoUtils {
 
     public static void printArray(int[] array) {
