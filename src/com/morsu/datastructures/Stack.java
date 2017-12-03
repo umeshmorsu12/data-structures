@@ -1,66 +1,108 @@
 package com.morsu.datastructures;
 
-import java.util.Arrays;
-
 /*
-   Stack uses LIFO (Last In First Out)
-    Pop -> O(1)
-    Push -> O(1)
+    LIFO data structure
+
+    Average Time Complexity
+    -----------------------
+    Access/Search - O(n)
+    Insertion - O(1)
+    Deletion - O(1)
+
+    Worst Time Complexity
+    ---------------------
+    Access/Search - O(n)
+    Insertion - O(1)
+    Deletion - O(1)
  */
+
 public class Stack {
 
-    private Object[] table;
+    private static class Node {
+        private int data;
+        private Node next;
+
+        private Node(int data) {
+            this.data = data;
+        }
+    }
+
+    private Node top;
     private int size = 0;
-    private int capacity = 0;
 
-    // O(1)
-    public Stack(int capacity) {
-        this.capacity = capacity;
-        this.table = new Object[capacity];
+    public boolean isEmpty() {
+        return this.top == null;
     }
 
-    // O(1)
-    public Object pop() {
-        if ( size == 0)
-            throw new RuntimeException("No Elements in the stack");
-
-        Object poppedElement = this.table[size-1];
-        this.table[size-1] = null;
-        size--;
-        return poppedElement;
+    public void push(int data) {
+        Node node = new Node(data);
+        node.next = top;
+        top = node;
+        this.size++;
     }
 
-    // O(1)
-    public void push(Object entry) {
-        if ((size + 1) > capacity)
-            throw new RuntimeException("Stack overflow error!");
+    public int pop() {
+        if (top == null) throw new RuntimeException("No elements present the Stack");
+        this.size--;
+        int data = top.data;
+        top = top.next;
+        return data;
+    }
 
-        this.table[size++] = entry;
+    public int peek() {
+        if (top == null) throw new RuntimeException("No elements present the Stack");
+        return top.data;
     }
 
     public int size() {
-        return size;
+        return this.size;
     }
 
-    public void printStack() {
-        System.out.println(Arrays.toString(this.table));
+    public boolean find(int data){
+        if (top == null) return false;
+
+        Node current = top;
+
+        while(current.next != null) {
+            if (current.data == data) {
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    private void printStack() {
+        Node current = this.top;
+        System.out.print("Stack contents: ");
+        while (current != null) {
+            System.out.print(current.data + ((current.next != null)? " -> ": "" ));
+            current = current.next;
+        }
+        System.out.println("");
     }
 
     public static void main(String args[]) {
-        Stack stack = new Stack(5);
-        stack.push("1");
-        stack.push("2");
-        stack.push("3");
-        stack.push("4");
-        stack.push("5");
+        Stack stack = new Stack();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
+        stack.push(5);
+        stack.printStack();
+        stack.pop();
         stack.printStack();
         stack.pop();
         stack.pop();
         stack.pop();
         System.out.println("Size of stack# " + stack.size());
+        stack.pop();
         stack.printStack();
-        stack.push("6");
-        stack.push("7");
+        stack.push(6);
+        stack.push(7);
+        System.out.println("Finding 7# " + stack.find(7));
         System.out.println("Size of stack# " + stack.size());
         stack.printStack();
     }
