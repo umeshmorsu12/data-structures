@@ -7,16 +7,19 @@ package com.morsu.datastructures;
         Insert/Delete -> O(1) (first element), O(n) (nth element)
  */
 
-class Node {
-    int data;
-    Node next;
 
-    Node(int data) {
-        this.data = data;
-    }
-}
 
 public class LinkedList {
+
+    private static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
     private Node head;
 
     public void append(int data) {
