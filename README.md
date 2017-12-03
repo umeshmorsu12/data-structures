@@ -1,2 +1,2 @@
 # Data Structures
-Visit Wiki for additional documentation 
+This [Wiki link](https://github.com/umeshmorsu12/data-structures/wiki) contains all the documentation
