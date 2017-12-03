@@ -1,5 +1,6 @@
 package com.morsu.utils;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -8,13 +9,7 @@ import java.util.Scanner;
 public abstract class AlgoUtils {
 
     public static void printArray(int[] array) {
-
-        System.out.print(" [ ");
-
-        for (int index=0; index < array.length; index++) {
-            System.out.print(array[index] + " ");
-        }
-        System.out.println(" ] ");
+        System.out.println(Arrays.toString(array));
     }
 
     public static int[] getInputArray() {
@@ -29,5 +24,11 @@ public abstract class AlgoUtils {
             inputArray[index] = scan.nextInt();
         }
         return inputArray;
+    }
+
+    public static void swap(int[] inputArray, int fromIndex, int toIndex) {
+        int temp = inputArray[fromIndex];
+        inputArray[fromIndex] = inputArray[toIndex];
+        inputArray[toIndex] = temp;
     }
 }

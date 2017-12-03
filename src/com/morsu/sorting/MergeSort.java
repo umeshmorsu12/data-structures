@@ -12,9 +12,9 @@ package com.morsu.sorting;
 
 import com.morsu.utils.AlgoUtils;
 
-public class MergeSort {
+public class MergeSort extends Sort {
 
-    public static void sort(int[] inputArray) {
+    public void sort(int[] inputArray) {
         mergeSort(inputArray, 0, inputArray.length - 1);
     }
 
@@ -76,12 +76,7 @@ public class MergeSort {
 
 
     public static void main(String args[]) {
-        int[] inputArray = AlgoUtils.getInputArray();
-        System.out.print("Input Array: ");
-        AlgoUtils.printArray(inputArray);
-        sort(inputArray);
-        System.out.print("Sorted Array: ");
-        AlgoUtils.printArray(inputArray);
+        run(new MergeSort());
     }
 
 }

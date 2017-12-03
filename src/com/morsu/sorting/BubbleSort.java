@@ -13,9 +13,9 @@ import com.morsu.utils.AlgoUtils;
       Worst-case space complexity	O(1)
 
  */
-public class BubbleSort {
+public class BubbleSort  extends Sort {
 
-    public static void sort(final int[] inputArray) {
+    public void sort(final int[] inputArray) {
 
         boolean swapFlag = true;
         int length = inputArray.length;
@@ -42,12 +42,7 @@ public class BubbleSort {
     }
 
     public static void main(String args[]) {
-
-        int[] inputArray = AlgoUtils.getInputArray();
-
-        AlgoUtils.printArray(inputArray);
-        sort(inputArray);
-        AlgoUtils.printArray(inputArray);
+        run(new BubbleSort());
     }
 
 }

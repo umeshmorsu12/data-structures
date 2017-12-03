@@ -3,6 +3,8 @@ package com.morsu.sorting;
 
 import com.morsu.utils.AlgoUtils;
 
+import java.util.Random;
+
 /*
 
         Worst-case performance: 	 O(n^2)
@@ -10,59 +12,40 @@ import com.morsu.utils.AlgoUtils;
         Average performance:	     O(n log n)
         Worst-case space complexity: O(n) auxiliary (naive) O(log n) auxiliary
  */
-public class QuickSort {
+public class QuickSort extends Sort {
 
-    public static void sort(int[] inputArray, int left, int right){
-        int index = partition(inputArray, left, right);
 
-        if (left < index-1)
-            sort(inputArray,left, index - 1);
-
-        if (index < right)
-            sort(inputArray,index, right);
-
+    public void sort(int[] inputArray) {
+        quickSort(inputArray, 0, inputArray.length-1);
     }
 
-    private static int partition(int[] inputArray, int left, int right) {
+    private  void quickSort(int[] inputArray, int low, int high) {
+        if (low < high + 1) {
+            int p = partition(inputArray, low, high);
+            quickSort(inputArray, low, p-1);
+            quickSort(inputArray, p + 1, high);
 
+        }
+    }
 
-        int i = left, j = right;
-        int tmp;
-        int pivot = inputArray[(left + right) / 2];
+    private  int getPivot(int low, int high) {
+        Random random = new Random();
+        return random.nextInt((high-low) + 1) + low; // Inclusive
+    }
 
-        System.out.println("------------ START PASS ---------------");
-        System.out.println(" Pivot# " + pivot +
-                            " left# " + left +
-                            " right# " + right);
-        while ( i <= j ) {
-            while (inputArray[i] < pivot)
-                i++;
-
-            while (inputArray[j] > pivot)
-                j--;
-
-            if ( i <= j ) {
-                tmp = inputArray[i];
-                inputArray[i] = inputArray[j];
-                inputArray[j] = tmp;
-                i++;
-                j--;
+    private  int partition(int[] inputArray, int low, int high) {
+        AlgoUtils.swap(inputArray, low, getPivot(low, high));
+        int border = low + 1;
+        for (int i = border; i <= high; i++) {
+            if (inputArray[i] < inputArray[low]) {
+                AlgoUtils.swap(inputArray, i, border++);
             }
         }
-        System.out.print("Array at end of pass: ");
-        AlgoUtils.printArray(inputArray);
-        System.out.println("------------ END PASS ---------------");
-
-        return i;
+        AlgoUtils.swap(inputArray,low, border-1);
+        return border-1;
     }
 
-
     public static void main(String args[]) {
-        int[] inputArray = AlgoUtils.getInputArray();
-
-        int left = 0, right = inputArray.length-1;
-        AlgoUtils.printArray(inputArray);
-        sort(inputArray, left, right);
-        AlgoUtils.printArray(inputArray);
+        run(new QuickSort());
     }
 }

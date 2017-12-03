@@ -20,9 +20,9 @@ import com.morsu.utils.AlgoUtils;
         Average performance	О(n2) comparisons, swaps
         Worst-case space complexity	О(n) total, O(1) auxiliary
  */
-public class InsertionSort {
+public class InsertionSort extends Sort {
 
-    public static void sort(int[] inputArray) {
+    public void sort(int[] inputArray) {
 
         for (int i = 1; i < inputArray.length; i++) {
             System.out.println("------------- BEGIN PASS# " + i + "-----------");
@@ -44,11 +44,6 @@ public class InsertionSort {
     }
 
     public static void main(String args[]) {
-        int[] inputArray = AlgoUtils.getInputArray();
-        System.out.print("Before Sort: ");
-        AlgoUtils.printArray(inputArray);
-        sort(inputArray);
-        System.out.print("After Sort: ");
-        AlgoUtils.printArray(inputArray);
+        run(new InsertionSort());
     }
 }
