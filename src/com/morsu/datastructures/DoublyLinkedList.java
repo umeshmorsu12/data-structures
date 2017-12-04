@@ -1,5 +1,15 @@
 package com.morsu.datastructures;
 
+/*
+    append -> O(n)
+    prepend -> O(1)
+    delete -> O(n)
+    insertAfterElement -> O(n)
+    insertBeforeElement -> O(n)
+    insertAfter -> O(1)
+    insertBefore -> O(1)
+
+ */
 
 public class DoublyLinkedList {
 
@@ -84,7 +94,7 @@ public class DoublyLinkedList {
         return false;
     }
 
-    public void insertAfter(int after, int data) {
+    public void insertAfterElement(int after, int data) {
         Node node = new Node(data);
         if (head == null) {
            throw new RuntimeException("No elements found in the LinkedList");
@@ -121,7 +131,7 @@ public class DoublyLinkedList {
     }
 
 
-    public void insertBefore(int before, int data) {
+    public void insertBeforeElement(int before, int data) {
 
         if (head == null) throw new RuntimeException("No elements present int he list");
 
@@ -206,17 +216,17 @@ public class DoublyLinkedList {
         linkedList.deleteWithValue(2);
         linkedList.printLinkedList();
         linkedList.printLinkedList();
-        linkedList.insertAfter(1, 8);
+        linkedList.insertAfterElement(1, 8);
         linkedList.printLinkedList();
-        linkedList.insertAfter(8, 9);
+        linkedList.insertAfterElement(8, 9);
         linkedList.printLinkedList();
-        linkedList.insertBefore(1, 10);
+        linkedList.insertBeforeElement(1, 10);
         linkedList.printLinkedList();
-        linkedList.insertAfter(5, 11);
+        linkedList.insertAfterElement(5, 11);
         linkedList.printLinkedList();
-        linkedList.insertBefore(11, 12);
+        linkedList.insertBeforeElement(11, 12);
         linkedList.printLinkedList();
-        linkedList.insertAfter(12, 13);
+        linkedList.insertAfterElement(12, 13);
         linkedList.printLinkedList();
         System.out.println(" Is Empty: " + linkedList.isEmpty());
 
