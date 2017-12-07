@@ -111,6 +111,57 @@ public class BinaryTree {
         }
     }
 
+    public void printLevel(int level) {
+        System.out.println("================= Start " + level + " ================");
+        this.printGivenLevel(this.root,level);
+        System.out.println();
+        System.out.println("================= End " + level + " ================");
+    }
+
+    /* Print nodes at the given level */
+    private void printGivenLevel (Node root ,int level)
+    {
+        if (root == null)
+            return;
+        if (level == 1)
+            System.out.print(root.data + " ");
+        else if (level > 1)
+        {
+            printGivenLevel(root.left, level-1);
+            printGivenLevel(root.right, level-1);
+        }
+    }
+
+    public int treeHeight() {
+        return height(this.root);
+    }
+
+    private int height(Node node) {
+        if (node == null)
+            return 0;
+        else
+        {
+            int lHeight = height(node.left);
+            int rHeight = height(node.right);
+
+            if (lHeight > rHeight) {
+                return (lHeight+1);
+            } else
+                return rHeight+1;
+        }
+    }
+
+    public void printLevelOrder() {
+        System.out.println("Printing Level Order");
+        int h = height(this.root);
+        for (int i=1;i<=h;i++) {
+            printGivenLevel(this.root,i);
+        }
+        System.out.println();
+        System.out.println("Done Printing");
+    }
+
+
     public Node delete(int value) {
         return deleteNode(this.root,value);
     }
@@ -180,5 +231,10 @@ public class BinaryTree {
         bTree.preOrderTraversal();
         bTree.postOrderTraversal();
 
+        bTree.printLevel(3);
+
+        bTree.printLevel(1);
+        System.out.println(bTree.treeHeight());
+        bTree.printLevelOrder();
     }
 }
